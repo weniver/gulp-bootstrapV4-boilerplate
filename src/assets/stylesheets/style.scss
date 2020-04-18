@@ -1,0 +1,26 @@
+@import "bootstrap/scss/bootstrap";
+
+@import "abstracts/vars";
+@import "abstracts/mixins";
+@import "abstracts/functions";
+
+@import "base/fonts";
+@import "base/common";
+@import "base/helpers";
+
+.boilerplate {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.red {
+  background-color: red;
+}
+
+.penrose {
+  height: 8em;
+  width: auto;
+  margin:1em;
+}
