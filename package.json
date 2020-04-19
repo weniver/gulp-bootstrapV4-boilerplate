@@ -1,9 +1,24 @@
 {
+  "name": "gulp-bootstrapv4-boilerplate",
   "description": "Simple Bootstrap Boilerplate for CSS/HTML/JS Projects.",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/weniver/gulp-bootstrapV4-boilerplate"
+    "url": "git+https://github.com/weniver/gulp-bootstrapV4-boilerplate.git"
   },
+  "keywords": [
+    "bootstrap",
+    "gulp",
+    "boilerplate"
+  ],
+  "author": "weniver",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/weniver/gulp-bootstrapV4-boilerplate/issues"
+  },
+  "homepage": "https://github.com/weniver/gulp-bootstrapV4-boilerplate#readme",
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
@@ -33,7 +48,7 @@
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-svg": "^2.4.0",
     "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0",
+    "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
     "animejs": "^3.2.0",
