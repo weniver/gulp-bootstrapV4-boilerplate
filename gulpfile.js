@@ -9,20 +9,15 @@ var gulp = require("gulp"),
   sass = require("gulp-sass"),
   postcss = require("gulp-postcss"),
   sourcemaps = require("gulp-sourcemaps"),
-  argv = require("yargs").argv,
-  gulpif = require("gulp-if"),
   autoprefixer = require("autoprefixer"),
   babel = require("gulp-babel"),
   uglify = require("gulp-uglify"),
   postcssFlex = require("postcss-flexbugs-fixes"),
   postcssSvg = require("postcss-svg"),
-  svgSprite = require("gulp-svg-sprite"),
-  svgSymbols = require("gulp-svg-symbols"),
   postcssAssets = require("postcss-assets"),
   rename = require("gulp-rename"),
   clean = require("gulp-clean"),
   browserSync = require("browser-sync").create(),
-  pug = require("gulp-pug"),
   notify = require("gulp-notify"),
   cssnano = require("gulp-cssnano"),
   imagemin = require("gulp-imagemin"),
@@ -50,8 +45,6 @@ gulp.task("browser-sync", function() {
 gulp.task("styles", function() {
   var processors = [
     autoprefixer(),
-    // postcssSvg({paths: ['dist/img'], silent: false}),
-    // postcssAssets({loadPaths: ['dist/img'], basePath: 'dist/img', baseUrl: '/img/'}),
     postcssFlex()
   ];
   return gulp
@@ -128,33 +121,34 @@ gulp.task("optimizationSVG", function() {
 
 //ttf to woff
 
-gulp.task("ttf2woff", function() {
+gulp.task("ttf2woff", function(done) {
+  //you pass callback function that we have called "done" to notify when the promise resolvers
   gulp
     .src(["src/assets/fonts/*.ttf"])
     .pipe(ttf2woff())
     .pipe(gulp.dest("src/assets/fonts/"));
+  done();
 });
 
 //ttf to woff2
 
-gulp.task("ttf2woff2", function() {
+gulp.task("ttf2woff2", function(done) {
+  //you pass callback function that we have called "done" to notify when the promise resolvers
   gulp
     .src(["src/assets/fonts/*.ttf"])
     .pipe(ttf2woff2())
     .pipe(gulp.dest("src/assets/fonts/"));
+  done();
 });
 
 //ttf to eot
 
-gulp.task("ttf2eot", function() {
+gulp.task("ttf2eot", function(done) {
+  //you pass callback function that we have called "done" to notify when the promise resolvers
   gulp
     .src(["src/assets/fonts/*.ttf"])
     .pipe(ttf2eot())
     .pipe(gulp.dest("src/assets/fonts/"));
-});
-
-gulp.task("convertFonts", function(done) {
-  gulp.series("ttf2woff", "ttf2eot", "ttf2woff2");
   done();
 });
 
@@ -207,7 +201,7 @@ gulp.task("watch", function() {
   watcher(imgWatcher);
 });
 
-//Default Gulp task
+//Important Tasks
 gulp.task(
   "default",
   gulp.series(
@@ -218,3 +212,7 @@ gulp.task(
     gulp.parallel("browser-sync", "watch")
   )
 );
+
+gulp.task("convertFonts", gulp.series("ttf2woff", "ttf2eot", "ttf2woff2"));
+
+gulp.task("cb", gulp.series("clean", "convertFonts", "default"));
