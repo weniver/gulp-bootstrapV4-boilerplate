@@ -1,6 +1,5 @@
-import 'bootstrap/js/dist/dropdown.js'
-import anime from 'animejs/lib/anime.js';
+import "bootstrap/js/dist/dropdown.js";
 
- (() => {
-   console.log("Hola Mundo")
- })();
+(() => {
+  console.log("Hola Mundo");
+})();
